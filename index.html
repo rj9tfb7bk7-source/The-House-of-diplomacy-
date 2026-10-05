@@ -630,7 +630,7 @@ a,.btn,button{touch-action:manipulation}
 </section>
 <section aria-label="India Standard Time clock" class="dark clock-band">
 <p class="clock-label">INDIA STANDARD TIME (IST)</p>
-<div aria-live="off" class="ist-clock" id="istClock"><span class="ck"><b id="ckH">00</b><i>HOURS</i></span><em>:</em><span class="ck"><b id="ckM">00</b><i>MINUTES</i></span><em>:</em><span class="ck"><b id="ckS">00</b><i>SECONDS</i></span><em>.</em><span class="ck ms"><b id="ckMs">000</b><i>MILLISECONDS</i></span></div>
+<div aria-live="off" class="ist-clock" id="istClock"><span class="ck"><b id="ckH">00</b><i>HOURS</i></span><em>:</em><span class="ck"><b id="ckM">00</b><i>MINUTES</i></span><em>:</em><span class="ck"><b id="ckS">00</b><i>SECONDS</i></span></div>
 <p class="clock-line">It's time to show your work and bring a change.</p>
 </section>
 <section class="cream section" id="house">
@@ -1051,13 +1051,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){setPlan(fal
 
 /* IST clock: Asia/Kolkata is UTC+5:30 with no daylight saving */
 (function(){
-  var H=document.getElementById('ckH'),M=document.getElementById('ckM'),S=document.getElementById('ckS'),MS=document.getElementById('ckMs');
+  var H=document.getElementById('ckH'),M=document.getElementById('ckM'),S=document.getElementById('ckS');
   if(!H)return;
-  function p(n,l){n=String(n);while(n.length<l)n='0'+n;return n}
+  function p(n){n=String(n);return n.length<2?'0'+n:n}
   function tick(){
     var d=new Date(Date.now()+19800000);
-    H.textContent=p(d.getUTCHours(),2);M.textContent=p(d.getUTCMinutes(),2);S.textContent=p(d.getUTCSeconds(),2);MS.textContent=p(d.getUTCMilliseconds(),3);
-    requestAnimationFrame(tick);
+    H.textContent=p(d.getUTCHours());M.textContent=p(d.getUTCMinutes());S.textContent=p(d.getUTCSeconds());
+    setTimeout(tick,1000-(Date.now()%1000));
   }
   tick();
 })();
