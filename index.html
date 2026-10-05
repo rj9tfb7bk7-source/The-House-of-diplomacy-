@@ -492,6 +492,9 @@ a,.btn,button{touch-action:manipulation}
   .house-details summary{line-height:1.5;gap:20px}
   .house-details summary span{flex:none}
 }
+
+/* Fix: headings fade in without sliding, so they never overlap the text below while animating */
+.js-ready h2.motion-reveal,.js-ready h3.motion-reveal,.js-ready .lead.motion-reveal,.js-ready .section-head.motion-reveal{transform:none!important}
 </style>
 </head>
 <body>
